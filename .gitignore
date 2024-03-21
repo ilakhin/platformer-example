@@ -1,0 +1,14 @@
+/Client/.idea/
+/Client/.vs/
+/Client/.vscode/
+/Client/Assets/Temp/
+/Client/Assets/Temp.meta
+/Client/Library/
+/Client/Logs/
+/Client/obj/
+/Client/Temp/
+/Client/UserSettings/
+/Client/*.csproj
+/Client/*.sln
+/Client/*.user
+*.DS_Store
