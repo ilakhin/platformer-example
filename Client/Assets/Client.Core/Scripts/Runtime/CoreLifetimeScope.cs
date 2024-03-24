@@ -8,6 +8,9 @@ namespace Client.Core
     [DisallowMultipleComponent]
     internal sealed class CoreLifetimeScope : LifetimeScope
     {
+        [SerializeField]
+        private Player _player;
+        
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<CoreEntryPoint>();
@@ -16,6 +19,8 @@ namespace Client.Core
             builder.Register<IState, StartState>(Lifetime.Transient);
             builder.Register<IState, MainState>(Lifetime.Transient);
             builder.Register<IState, StopState>(Lifetime.Transient);
+
+            builder.RegisterComponent(_player);
         }
     }
 }
