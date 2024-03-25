@@ -7,35 +7,39 @@ namespace Client.Core
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
-    internal sealed class Player : MonoBehaviour
+    public sealed class Player : MonoBehaviour, IPlayer
     {
-        private static readonly int _runHash = Animator.StringToHash("run");
+        private static readonly int _groundedHash = Animator.StringToHash("grounded");
 
         [SerializeField]
         private LayerMask _groundLayerMask;
 
         [SerializeField]
-        private float _runVelocity;
+        private float _runningVelocity;
 
         [SerializeField]
-        private Vector2 _jumpForce;
+        private float _jumpingDuration;
+
+        [SerializeField]
+        private float _jumpingVelocity;
 
         private Animator _animator;
         private Collider2D _collider;
         private Rigidbody2D _rigidbody;
 
+        private ICollisionManager _collisionManager;
+
         private bool _grounded;
+        private bool _running;
+        private bool _jumping;
 
-        public bool Jump
-        {
-            get;
-            set;
-        }
+        private float _runningVelocityRatio = 1f;
+        private float _jumpingVelocityRatio = 1f;
+        private float _jumpingTime;
 
-        public bool Running
+        public void Initialize(ICollisionManager collisionManager)
         {
-            get;
-            set;
+            _collisionManager = collisionManager;
         }
 
         private void UpdateGrounded()
@@ -59,35 +63,82 @@ namespace Client.Core
         {
             UpdateGrounded();
 
-            if (Jump)
-            {
-                Jump = false;
-                _rigidbody.AddForce(_jumpForce, ForceMode2D.Impulse);
-            }
-
-            _animator.SetBool(_runHash, Running);
-
-            if (Running)
-            {
-                _rigidbody.velocity = new Vector2(_runVelocity, _rigidbody.velocity.y);
-            }
+            _animator.SetBool(_groundedHash, _grounded);
         }
 
         [UsedImplicitly]
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var triggerHandler = other.GetComponentInParent<ITriggerHandler>();
-
-            triggerHandler?.OnEnter();
+            if (other.TryGetComponent<ITrigger>(out var trigger))
+            {
+                _collisionManager.OnTriggerEnter(this, trigger);
+            }
         }
 
         [UsedImplicitly]
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space) && _grounded)
+            if (_jumping)
             {
-                Jump = true;
+                _jumpingTime += Time.deltaTime;
+
+                if (_jumpingTime > _jumpingDuration)
+                {
+                    _jumping = default;
+                }
             }
+
+            var xVelocity = _running
+                ? _runningVelocityRatio * _runningVelocity
+                : _rigidbody.velocity.x;
+
+            var yVelocity = _jumping
+                ? _jumpingVelocityRatio * _jumpingVelocity
+                : _rigidbody.velocity.y;
+
+            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
+        }
+
+        Rigidbody2D IPlayer.Rigidbody => _rigidbody;
+
+        bool IPlayer.Running
+        {
+            get => _running;
+            set => _running = value;
+        }
+
+        float IPlayer.RunningVelocityRatio
+        {
+            get => _runningVelocityRatio;
+            set => _runningVelocityRatio = value;
+        }
+
+        bool IPlayer.Jumping
+        {
+            get => _jumping;
+            set
+            {
+                if (value)
+                {
+                    if (!_grounded)
+                    {
+                        return;
+                    }
+
+                    _jumping = true;
+                    _jumpingTime = default;
+                }
+                else
+                {
+                    _jumping = false;
+                }
+            }
+        }
+
+        float IPlayer.JumpingVelocityRatio
+        {
+            get => _jumpingVelocityRatio;
+            set => _jumpingVelocityRatio = value;
         }
     }
 }

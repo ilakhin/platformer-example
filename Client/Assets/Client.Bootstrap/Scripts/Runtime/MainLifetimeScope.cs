@@ -5,15 +5,15 @@ using VContainer.Unity;
 namespace Client.Bootstrap
 {
     [DisallowMultipleComponent]
-    internal sealed class MainLifetimeScope : LifetimeScope
+    public sealed class MainLifetimeScope : LifetimeScope
     {
         [SerializeField]
-        private MainSettings _mainSettings;
+        private MainConfig _config;
 
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<MainEntryPoint>();
-            builder.RegisterInstance(_mainSettings);
+            builder.RegisterInstance(_config);
         }
     }
 }

@@ -7,19 +7,19 @@ using VContainer.Unity;
 namespace Client.Bootstrap
 {
     [UsedImplicitly]
-    internal sealed class MainEntryPoint : IAsyncStartable
+    public sealed class MainEntryPoint : IAsyncStartable
     {
-        private readonly MainSettings _mainSettings;
+        private readonly MainConfig _config;
 
-        public MainEntryPoint(MainSettings mainSettings)
+        public MainEntryPoint(MainConfig config)
         {
-            _mainSettings = mainSettings;
+            _config = config;
         }
 
         async UniTask IAsyncStartable.StartAsync(CancellationToken cancellationToken)
         {
             await Addressables.InitializeAsync().ToUniTask(cancellationToken: cancellationToken);
-            await _mainSettings.CoreSceneReference.LoadSceneAsync().ToUniTask(cancellationToken: cancellationToken);
+            await _config.CoreSceneReference.LoadSceneAsync().ToUniTask(cancellationToken: cancellationToken);
         }
     }
 }

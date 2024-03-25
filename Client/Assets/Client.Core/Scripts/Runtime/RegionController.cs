@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Client.Core
 {
     [DisallowMultipleComponent]
-    internal sealed class RegionController : MonoBehaviour, ITriggerHandler
+    public sealed class RegionController : MonoBehaviour
     {
         [SerializeField]
         private List<Region> _regions;
@@ -14,11 +14,19 @@ namespace Client.Core
         private Vector3 _nextRegionPosition;
 
         [SerializeField]
-        private Region _regionPrefab;
+        private Region[] _regionPrefabs;
+
+        public void Recreate()
+        {
+            CreateNextRegion();
+            DestroyFirstRegion();
+        }
 
         private void CreateNextRegion()
         {
-            var region = Instantiate(_regionPrefab, _nextRegionPosition, Quaternion.identity, transform);
+            var regionPrefabIndex = Random.Range(0, _regionPrefabs.Length);
+            var regionPrefab = _regionPrefabs[regionPrefabIndex];
+            var region = Instantiate(regionPrefab, _nextRegionPosition, Quaternion.identity, transform);
 
             _regions.Add(region);
             _nextRegionPosition.x += region.Width;
@@ -37,12 +45,6 @@ namespace Client.Core
         private void Start()
         {
             CreateNextRegion();
-        }
-
-        void ITriggerHandler.OnEnter()
-        {
-            CreateNextRegion();
-            DestroyFirstRegion();
         }
     }
 }

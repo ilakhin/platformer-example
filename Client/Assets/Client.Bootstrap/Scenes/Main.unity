@@ -293,7 +293,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects: []
-  _mainSettings: {fileID: 11400000, guid: 4470a26af9a534a61b2395b45273ac35, type: 2}
+  _config: {fileID: 11400000, guid: 4470a26af9a534a61b2395b45273ac35, type: 2}
 --- !u!4 &1782445847
 Transform:
   m_ObjectHideFlags: 0
@@ -313,5 +313,5 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 519420032}
   - {fileID: 1782445847}
+  - {fileID: 519420032}
