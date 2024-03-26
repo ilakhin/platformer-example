@@ -13,7 +13,7 @@ namespace Client.Core
 
         IEnumerable<IAttachment> IItem.Attachments => _attachments.OfType<IAttachment>();
 
-        void IItem.SetActive(bool active)
+        void IEntity.SetActive(bool active)
         {
             gameObject.SetActive(active);
         }

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Client.Core
@@ -10,13 +11,14 @@ namespace Client.Core
 
         public float Width => _width;
 
+        [UsedImplicitly]
         private void OnEnable()
         {
-            var items = GetComponentsInChildren<IItem>(true);
+            var entities = GetComponentsInChildren<IEntity>(true);
 
-            foreach (var item in items)
+            foreach (var entity in entities)
             {
-                item.SetActive(true);
+                entity.SetActive(true);
             }
         }
     }

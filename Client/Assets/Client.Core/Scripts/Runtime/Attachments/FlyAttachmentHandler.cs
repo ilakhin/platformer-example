@@ -17,7 +17,7 @@ namespace Client.Core.Attachments
 
         void IAttachmentHandler<FlyAttachment>.Handle(FlyAttachment attachment)
         {
-            var modifier = new FlyModifier(attachment.Duration, _player);
+            var modifier = new FlyModifier(attachment.Id, attachment.Duration, _player);
 
             _modifierManager.AddModifier(modifier);
         }

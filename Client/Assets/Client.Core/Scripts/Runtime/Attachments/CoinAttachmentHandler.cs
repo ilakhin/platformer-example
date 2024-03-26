@@ -14,7 +14,7 @@ namespace Client.Core.Attachments
 
         void IAttachmentHandler<CoinAttachment>.Handle(CoinAttachment attachment)
         {
-            _coinManager.AddCoins(attachment.Coins);
+            _coinManager.Coins.Value += attachment.Coins;
         }
     }
 }

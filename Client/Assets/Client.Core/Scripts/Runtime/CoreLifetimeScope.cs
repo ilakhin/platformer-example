@@ -22,6 +22,9 @@ namespace Client.Core
         [SerializeField]
         private RegionController _regionController;
 
+        [SerializeField]
+        private HudView _hudView;
+
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterEntryPoint<CoreEntryPoint>();
@@ -30,6 +33,7 @@ namespace Client.Core
             builder.RegisterComponent(_cameraProvider).As<ICamera>();
             builder.RegisterComponent(_player).As<IPlayer>();
             builder.RegisterComponent(_regionController);
+            builder.RegisterComponent(_hudView);
 
             builder.Register<IStateMachine, StateMachine>(Lifetime.Singleton);
             builder.Register<IState, StartState>(Lifetime.Transient);
@@ -44,6 +48,9 @@ namespace Client.Core
             builder.Register<IAttachmentHandler, CoinAttachmentHandler>(Lifetime.Singleton);
             builder.Register<IAttachmentHandler, FlyAttachmentHandler>(Lifetime.Singleton);
             builder.Register<IAttachmentHandler, VelocityAttachmentHandler>(Lifetime.Singleton);
+            
+            builder.Register<HudModel>(Lifetime.Singleton);
+            builder.Register<HudViewModel>(Lifetime.Singleton);
         }
     }
 }

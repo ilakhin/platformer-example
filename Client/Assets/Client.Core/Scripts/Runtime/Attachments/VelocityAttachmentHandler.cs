@@ -17,7 +17,7 @@ namespace Client.Core.Attachments
 
         void IAttachmentHandler<VelocityAttachment>.Handle(VelocityAttachment attachment)
         {
-            var modifier = new VellocityModifier(attachment.Duration, attachment.Ratio, _player);
+            var modifier = new VellocityModifier(attachment.Id, attachment.Duration, attachment.Ratio, _player);
 
             _modifierManager.AddModifier(modifier);
         }

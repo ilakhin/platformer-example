@@ -1,17 +1,14 @@
 using JetBrains.Annotations;
+using R3;
 
 namespace Client.Core
 {
     [UsedImplicitly]
     public sealed class CoinManager : ICoinManager
     {
-        private int _coins;
-
-        int ICoinManager.Coins => _coins;
-
-        void ICoinManager.AddCoins(int coins)
+        ReactiveProperty<int> ICoinManager.Coins
         {
-            _coins += coins;
-        }
+            get;
+        } = new();
     }
 }

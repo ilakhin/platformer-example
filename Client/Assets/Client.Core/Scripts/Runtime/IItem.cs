@@ -3,13 +3,11 @@ using Client.Core.Attachments;
 
 namespace Client.Core
 {
-    public interface IItem
+    public interface IItem : IEntity
     {
         IEnumerable<IAttachment> Attachments
         {
             get;
         }
-
-        void SetActive(bool active);
     }
 }

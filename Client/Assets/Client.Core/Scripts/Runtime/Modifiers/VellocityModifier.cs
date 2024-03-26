@@ -2,16 +2,20 @@ namespace Client.Core.Modifiers
 {
     public sealed class VellocityModifier : IModifier
     {
+        private readonly string _id;
         private readonly float _duration;
         private readonly float _ratio;
         private readonly IPlayer _player;
 
-        public VellocityModifier(float duration, float ratio, IPlayer player)
+        public VellocityModifier(string id, float duration, float ratio, IPlayer player)
         {
+            _id = id;
             _duration = duration;
             _ratio = ratio;
             _player = player;
         }
+
+        string IModifier.Id => _id;
 
         float IModifier.Duration => _duration;
 

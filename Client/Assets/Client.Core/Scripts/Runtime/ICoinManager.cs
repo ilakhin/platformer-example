@@ -1,12 +1,12 @@
+using R3;
+
 namespace Client.Core
 {
     public interface ICoinManager
     {
-        int Coins
+        ReactiveProperty<int> Coins
         {
             get;
         }
-
-        void AddCoins(int coins);
     }
 }

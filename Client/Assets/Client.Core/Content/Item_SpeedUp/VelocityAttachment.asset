@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cef0314c4dc248e9bdc82b166e3bde23, type: 3}
   m_Name: VelocityAttachment
   m_EditorClassIdentifier: 
+  _id: SpeedUp
   _duration: 10
-  _ratio: 1.5
+  _ratio: 1.4

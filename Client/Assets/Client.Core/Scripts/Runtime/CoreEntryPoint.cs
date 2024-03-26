@@ -33,9 +33,7 @@ namespace Client.Core
 
         void ITickable.Tick()
         {
-            var currentTime = Time.time;
-
-            _modifierManager.Update(currentTime);
+            _modifierManager.Update(Time.time);
         }
     }
 }

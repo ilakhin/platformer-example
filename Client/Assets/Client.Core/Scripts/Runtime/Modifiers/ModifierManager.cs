@@ -8,18 +8,17 @@ namespace Client.Core.Modifiers
     [UsedImplicitly]
     public sealed class ModifierManager : IModifierManager
     {
-        private readonly Dictionary<Type, (IModifier Modifier, float EndTime)> _modifierEntries = new();
-        private readonly HashSet<Type> _expiredModifierTypes = new();
+        private readonly Dictionary<string, (IModifier Modifier, float EndTime)> _modifierEntries = new(StringComparer.Ordinal);
+        private readonly HashSet<string> _expiredModifierIds = new(StringComparer.Ordinal);
 
         void IModifierManager.AddModifier(IModifier modifier)
         {
-            var modifierType = modifier.GetType();
-            var hasModifierEntry = _modifierEntries.TryGetValue(modifierType, out var modifierEntry);
+            var hasModifierEntry = _modifierEntries.TryGetValue(modifier.Id, out var modifierEntry);
             var endTime = hasModifierEntry
                 ? modifierEntry.EndTime + modifier.Duration
                 : Time.time + modifier.Duration;
 
-            _modifierEntries[modifierType] = (modifier, endTime);
+            _modifierEntries[modifier.Id] = (modifier, endTime);
 
             if (!hasModifierEntry)
             {
@@ -35,24 +34,24 @@ namespace Client.Core.Modifiers
             }
 
             _modifierEntries.Clear();
-            _expiredModifierTypes.Clear();
+            _expiredModifierIds.Clear();
         }
 
         void IModifierManager.Update(float currentTime)
         {
-            foreach (var (modifierType, modifierEntry) in _modifierEntries)
+            foreach (var (modifierId, modifierEntry) in _modifierEntries)
             {
                 if (modifierEntry.EndTime > currentTime)
                 {
                     continue;
                 }
 
-                _expiredModifierTypes.Add(modifierType);
+                _expiredModifierIds.Add(modifierId);
             }
 
-            foreach (var modifierType in _expiredModifierTypes)
+            foreach (var modifierId in _expiredModifierIds)
             {
-                if (!_modifierEntries.Remove(modifierType, out var modifierEntry))
+                if (!_modifierEntries.Remove(modifierId, out var modifierEntry))
                 {
                     continue;
                 }
@@ -62,7 +61,7 @@ namespace Client.Core.Modifiers
                 modifier.Deactivate();
             }
 
-            _expiredModifierTypes.Clear();
+            _expiredModifierIds.Clear();
         }
     }
 }

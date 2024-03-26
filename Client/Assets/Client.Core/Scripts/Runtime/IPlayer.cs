@@ -8,13 +8,13 @@ namespace Client.Core
         {
             get;
         }
-        
+
         bool Running
         {
             get;
             set;
         }
-        
+
         float RunningVelocityRatio
         {
             get;
@@ -26,7 +26,7 @@ namespace Client.Core
             get;
             set;
         }
-        
+
         float JumpingVelocityRatio
         {
             get;

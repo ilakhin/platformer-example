@@ -46,8 +46,38 @@ namespace Client.Core
         {
             var bounds = _collider.bounds;
             var hit = Physics2D.BoxCast(bounds.center, bounds.size, 0f, Vector2.down, 0.1f, _groundLayerMask.value);
+            var grounded = hit.collider != null;
 
-            _grounded = hit.collider != null;
+            _grounded = grounded;
+            _animator.SetBool(_groundedHash, grounded);
+        }
+
+        private void UpdateJumping()
+        {
+            if (!_jumping)
+            {
+                return;
+            }
+
+            _jumpingTime += Time.deltaTime;
+
+            if (_jumpingTime > _jumpingDuration)
+            {
+                _jumping = default;
+            }
+        }
+
+        private void UpdateVelocity()
+        {
+            var xVelocity = _running
+                ? _runningVelocityRatio * _runningVelocity
+                : _rigidbody.velocity.x;
+
+            var yVelocity = _jumping
+                ? _jumpingVelocityRatio * _jumpingVelocity
+                : _rigidbody.velocity.y;
+
+            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
         }
 
         [UsedImplicitly]
@@ -62,8 +92,7 @@ namespace Client.Core
         private void FixedUpdate()
         {
             UpdateGrounded();
-
-            _animator.SetBool(_groundedHash, _grounded);
+            UpdateVelocity();
         }
 
         [UsedImplicitly]
@@ -78,25 +107,7 @@ namespace Client.Core
         [UsedImplicitly]
         private void Update()
         {
-            if (_jumping)
-            {
-                _jumpingTime += Time.deltaTime;
-
-                if (_jumpingTime > _jumpingDuration)
-                {
-                    _jumping = default;
-                }
-            }
-
-            var xVelocity = _running
-                ? _runningVelocityRatio * _runningVelocity
-                : _rigidbody.velocity.x;
-
-            var yVelocity = _jumping
-                ? _jumpingVelocityRatio * _jumpingVelocity
-                : _rigidbody.velocity.y;
-
-            _rigidbody.velocity = new Vector2(xVelocity, yVelocity);
+            UpdateJumping();
         }
 
         Rigidbody2D IPlayer.Rigidbody => _rigidbody;

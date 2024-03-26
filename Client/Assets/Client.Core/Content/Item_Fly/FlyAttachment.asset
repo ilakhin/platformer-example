@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 585d55fe2ec14925b0d308ae2530a672, type: 3}
   m_Name: FlyAttachment
   m_EditorClassIdentifier: 
+  _id: Fly
   _duration: 10
