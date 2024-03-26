@@ -474,6 +474,16 @@ MonoBehaviour:
     _weight: 1
   - _regionPrefab: {fileID: 5396248927355065427, guid: 7bd597c1ef3354e02b18679063d9fc9c, type: 3}
     _weight: 1
+  - _regionPrefab: {fileID: 834488968142920171, guid: bc565c9d429274821926b0b9328cb929, type: 3}
+    _weight: 1
+  - _regionPrefab: {fileID: 834488968142920171, guid: 36eb6fda00d294d5a8f0c2ef98ed4ae1, type: 3}
+    _weight: 1
+  - _regionPrefab: {fileID: 834488968142920171, guid: 74d582027fd0f46c1bb0eb7700e4a8a8, type: 3}
+    _weight: 1
+  - _regionPrefab: {fileID: 834488968142920171, guid: 0719cc8f370514f9fa70e2543211b527, type: 3}
+    _weight: 1
+  - _regionPrefab: {fileID: 834488968142920171, guid: fcf1d03d6da4640058780e5399fb00e7, type: 3}
+    _weight: 1
 --- !u!4 &1158154114
 Transform:
   m_ObjectHideFlags: 0
