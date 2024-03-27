@@ -1,6 +1,6 @@
 namespace Client.Core
 {
-    // Используется для менеджмента модификаций ввода.
+    // Используется для менеджмента ввода.
     public interface IInputManager
     {
         void SetEnabled(bool enabled);
