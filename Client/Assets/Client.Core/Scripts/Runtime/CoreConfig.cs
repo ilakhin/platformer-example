@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 namespace Client.Core
 {
@@ -10,10 +9,10 @@ namespace Client.Core
         private float _cameraSize;
 
         [SerializeField]
-        private InputAction _jumpAction;
+        private InputManagerConfig _inputManagerConfig;
 
         public float CameraSize => _cameraSize;
 
-        public InputAction JumpAction => _jumpAction;
+        public InputManagerConfig InputManagerConfig => _inputManagerConfig;
     }
 }

@@ -1,7 +1,6 @@
 using Client.Core.Modifiers;
 using JetBrains.Annotations;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using VContainer.Unity;
 
 namespace Client.Core
@@ -11,16 +10,18 @@ namespace Client.Core
     {
         private readonly CoreConfig _config;
         private readonly ICollisionManager _collisionManager;
+        private readonly IInputManager _inputManager;
         private readonly IModifierManager _modifierManager;
         private readonly ICamera _camera;
         private readonly IPlayer _player;
         private readonly HudView _hudView;
         private readonly HudViewModel _hudViewModel;
 
-        public CoreEntryPoint(CoreConfig config, ICollisionManager collisionManager, IModifierManager modifierManager, ICamera camera, IPlayer player, HudView hudView, HudViewModel hudViewModel)
+        public CoreEntryPoint(CoreConfig config, ICollisionManager collisionManager, IInputManager inputManager, IModifierManager modifierManager, ICamera camera, IPlayer player, HudView hudView, HudViewModel hudViewModel)
         {
             _config = config;
             _collisionManager = collisionManager;
+            _inputManager = inputManager;
             _modifierManager = modifierManager;
             _camera = camera;
             _player = player;
@@ -28,30 +29,13 @@ namespace Client.Core
             _hudViewModel = hudViewModel;
         }
 
-        private void JumpAction_Canceled(InputAction.CallbackContext context)
-        {
-            _player.Jumping = false;
-        }
-
-        private void JumpAction_Started(InputAction.CallbackContext context)
-        {
-            _player.Jumping = true;
-        }
-
         void IStartable.Start()
         {
-            // TODO: Данные фрагменты должны лежать на уровне фабрики.
+            _camera.SetWidthSize(_config.CameraSize);
+            // TODO: Вынести на уровень фабрики или выделить в отдельный контроллер.
             ((Player)_player).Initialize(_collisionManager);
             _hudView.Initialize(_hudViewModel);
-
-            _camera.SetWidthSize(_config.CameraSize);
-            _player.Running = true;
-
-            var jumpAction = _config.JumpAction;
-
-            jumpAction.canceled += JumpAction_Canceled;
-            jumpAction.started += JumpAction_Started;
-            jumpAction.Enable();
+            _inputManager.SetEnabled(true);
         }
 
         void ITickable.Tick()

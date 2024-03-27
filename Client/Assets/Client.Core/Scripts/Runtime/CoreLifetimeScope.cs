@@ -28,6 +28,7 @@ namespace Client.Core
         {
             builder.RegisterEntryPoint<CoreEntryPoint>();
             builder.RegisterInstance(_config);
+            builder.RegisterInstance(_config.InputManagerConfig);
 
             builder.RegisterComponent(_cameraProvider).As<ICamera>();
             builder.RegisterComponent(_player).As<IPlayer>();
@@ -37,6 +38,7 @@ namespace Client.Core
             builder.Register<IAttachmentManager, AttachmentManager>(Lifetime.Singleton);
             builder.Register<ICoinManager, CoinManager>(Lifetime.Singleton);
             builder.Register<ICollisionManager, CollisionManager>(Lifetime.Singleton);
+            builder.Register<IInputManager, InputManager>(Lifetime.Singleton);
             builder.Register<IModifierManager, ModifierManager>(Lifetime.Singleton);
 
             builder.Register<IAttachmentHandler, CoinAttachmentHandler>(Lifetime.Singleton);
