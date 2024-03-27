@@ -26,6 +26,7 @@
 
 # Archives
 *.[aA][aA][rR] filter=lfs diff=lfs merge=lfs -text
+*.[aA][pP][kK] filter=lfs diff=lfs merge=lfs -text
 *.[tT][gG][zZ] filter=lfs diff=lfs merge=lfs -text
 
 # Audio
