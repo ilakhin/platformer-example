@@ -1,6 +1,5 @@
 using Client.Core.Attachments;
 using Client.Core.Modifiers;
-using Client.Foundation;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -35,11 +34,6 @@ namespace Client.Core
             builder.RegisterComponent(_regionController);
             builder.RegisterComponent(_hudView);
 
-            builder.Register<IStateMachine, StateMachine>(Lifetime.Singleton);
-            builder.Register<IState, StartState>(Lifetime.Transient);
-            builder.Register<IState, MainState>(Lifetime.Transient);
-            builder.Register<IState, StopState>(Lifetime.Transient);
-
             builder.Register<IAttachmentManager, AttachmentManager>(Lifetime.Singleton);
             builder.Register<ICoinManager, CoinManager>(Lifetime.Singleton);
             builder.Register<ICollisionManager, CollisionManager>(Lifetime.Singleton);
@@ -48,7 +42,7 @@ namespace Client.Core
             builder.Register<IAttachmentHandler, CoinAttachmentHandler>(Lifetime.Singleton);
             builder.Register<IAttachmentHandler, FlyAttachmentHandler>(Lifetime.Singleton);
             builder.Register<IAttachmentHandler, VelocityAttachmentHandler>(Lifetime.Singleton);
-            
+
             builder.Register<HudModel>(Lifetime.Singleton);
             builder.Register<HudViewModel>(Lifetime.Singleton);
         }

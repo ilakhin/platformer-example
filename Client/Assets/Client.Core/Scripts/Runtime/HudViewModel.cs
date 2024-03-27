@@ -9,7 +9,7 @@ namespace Client.Core
         public HudViewModel(HudModel model)
         {
             Coins.Value = model.Coins.CurrentValue;
-            
+
             model.Coins.Subscribe(Model_Coins_OnChanged);
         }
 
