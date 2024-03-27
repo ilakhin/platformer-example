@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Информация о сегменте (префаб, вес для генерации).
     [Serializable]
     public sealed class RegionInfo
     {

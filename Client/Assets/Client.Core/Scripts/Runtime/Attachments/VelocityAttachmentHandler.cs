@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 
 namespace Client.Core.Attachments
 {
+    // Обработчик прикрепления - модификатор скорости (ускорение / замедление).
     [UsedImplicitly]
     public sealed class VelocityAttachmentHandler : IAttachmentHandler<VelocityAttachment>
     {

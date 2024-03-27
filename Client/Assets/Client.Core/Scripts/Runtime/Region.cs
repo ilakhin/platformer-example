@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Сегмент игрового мира.
     [DisallowMultipleComponent]
     public sealed class Region : MonoBehaviour
     {

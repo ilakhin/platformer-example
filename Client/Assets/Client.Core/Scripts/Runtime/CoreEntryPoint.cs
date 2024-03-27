@@ -5,6 +5,7 @@ using VContainer.Unity;
 
 namespace Client.Core
 {
+    // Точка входа Core.
     [UsedImplicitly]
     public sealed class CoreEntryPoint : IStartable, ITickable
     {

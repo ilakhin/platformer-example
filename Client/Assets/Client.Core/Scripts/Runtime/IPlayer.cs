@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Игрок.
     public interface IPlayer
     {
         Rigidbody2D Rigidbody

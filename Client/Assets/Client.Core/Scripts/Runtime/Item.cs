@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Предмет (монеты, бонусы и тд).
     [DisallowMultipleComponent]
     public sealed class Item : MonoBehaviour, IItem, ITrigger
     {

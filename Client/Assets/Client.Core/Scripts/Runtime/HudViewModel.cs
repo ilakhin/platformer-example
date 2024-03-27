@@ -3,6 +3,7 @@ using R3;
 
 namespace Client.Core
 {
+    // Модель представления Hud (MVVM).
     [UsedImplicitly]
     public sealed class HudViewModel
     {

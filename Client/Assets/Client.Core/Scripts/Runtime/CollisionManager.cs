@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 
 namespace Client.Core
 {
+    // Используется для менеджмента коллизий (Player / Trigger).
     [UsedImplicitly]
     public sealed class CollisionManager : ICollisionManager
     {

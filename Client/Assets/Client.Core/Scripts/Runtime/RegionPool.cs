@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace Client.Core
 {
+    // Пул для сегментов игрового мира.
     public sealed class RegionPool
     {
         private readonly Dictionary<string, Stack<Region>> _regions = new(StringComparer.Ordinal);

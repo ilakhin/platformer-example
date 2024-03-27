@@ -6,6 +6,7 @@ using VContainer.Unity;
 
 namespace Client.Core
 {
+    // Корень связывания Core.
     [DisallowMultipleComponent]
     public sealed class CoreLifetimeScope : LifetimeScope
     {

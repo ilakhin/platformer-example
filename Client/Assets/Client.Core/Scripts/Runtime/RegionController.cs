@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 namespace Client.Core
 {
+    // Контроллер игрового мира.
     [DisallowMultipleComponent]
     public sealed class RegionController : MonoBehaviour
     {

@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 
 namespace Client.Core.Attachments
 {
+    // Обработчик прикрепления - полет.
     [UsedImplicitly]
     public sealed class FlyAttachmentHandler : IAttachmentHandler<FlyAttachment>
     {

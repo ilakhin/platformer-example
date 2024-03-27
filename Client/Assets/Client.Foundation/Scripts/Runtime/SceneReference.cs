@@ -5,6 +5,7 @@ using Object = UnityEngine.Object;
 
 namespace Client.Foundation
 {
+    // Слабая ссылка для Scene.
     [Serializable]
     public sealed class SceneReference : AssetReference
     {

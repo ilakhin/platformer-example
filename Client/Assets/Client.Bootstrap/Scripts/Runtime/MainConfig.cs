@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Client.Bootstrap
 {
+    // Конфигурация Main.
     [CreateAssetMenu]
     public sealed class MainConfig : ScriptableObject
     {

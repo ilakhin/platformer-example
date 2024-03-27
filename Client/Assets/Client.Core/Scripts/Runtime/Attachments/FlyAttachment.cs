@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core.Attachments
 {
+    // Прикрепление - модификатор полета.
     [CreateAssetMenu]
     public sealed class FlyAttachment : Attachment, IAttachment
     {

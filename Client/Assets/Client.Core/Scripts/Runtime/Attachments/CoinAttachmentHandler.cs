@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 
 namespace Client.Core.Attachments
 {
+    // Обработчик прикрепления - монеты.
     [UsedImplicitly]
     public sealed class CoinAttachmentHandler : IAttachmentHandler<CoinAttachment>
     {

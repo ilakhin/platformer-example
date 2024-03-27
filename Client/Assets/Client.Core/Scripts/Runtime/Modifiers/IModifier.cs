@@ -1,5 +1,6 @@
 namespace Client.Core.Modifiers
 {
+    // Модификатор (полет, скорость).
     public interface IModifier
     {
         string Id

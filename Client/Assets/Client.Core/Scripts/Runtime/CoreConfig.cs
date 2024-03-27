@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Конфигурация Core.
     [CreateAssetMenu]
     public sealed class CoreConfig : ScriptableObject
     {

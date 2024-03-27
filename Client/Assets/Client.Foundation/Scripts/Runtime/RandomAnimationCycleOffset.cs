@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Foundation
 {
+    // Устанавливает случайную позицию анимации. Используется для вариативности.
     public sealed class RandomAnimationCycleOffset : StateMachineBehaviour
     {
         private bool _executed;

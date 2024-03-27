@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Client.Core.Modifiers
 {
+    // Используется для менеджмента модификаций (активация / деактивация).
     [UsedImplicitly]
     public sealed class ModifierManager : IModifierManager
     {
@@ -24,17 +25,6 @@ namespace Client.Core.Modifiers
             {
                 modifier.Activate();
             }
-        }
-
-        void IModifierManager.Clear()
-        {
-            foreach (var (modifier, _) in _modifierEntries.Values)
-            {
-                modifier.Deactivate();
-            }
-
-            _modifierEntries.Clear();
-            _expiredModifierIds.Clear();
         }
 
         void IModifierManager.Update(float currentTime)

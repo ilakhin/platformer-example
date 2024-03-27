@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core.Attachments
 {
+    // Прикрепление - модификатор скорости (ускорение / замедление).
     [CreateAssetMenu]
     public sealed class VelocityAttachment : Attachment, IAttachment
     {

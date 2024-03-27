@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace Client.Core
 {
+    // Конфигурация InputManager.
     [Serializable]
     public sealed class InputManagerConfig
     {

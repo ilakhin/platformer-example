@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Представление Hud (MVVM).
     [DisallowMultipleComponent]
     public sealed class HudView : MonoBehaviour
     {

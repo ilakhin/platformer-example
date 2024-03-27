@@ -6,6 +6,7 @@ using VContainer.Unity;
 
 namespace Client.Bootstrap
 {
+    // Точка входа Main.
     [UsedImplicitly]
     public sealed class MainEntryPoint : IAsyncStartable
     {

@@ -1,5 +1,6 @@
 namespace Client.Core.Modifiers
 {
+    // Модификатор полета.
     public sealed class FlyModifier : IModifier
     {
         private readonly string _id;

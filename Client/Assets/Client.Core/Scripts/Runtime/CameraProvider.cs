@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Провайдер камеры.
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Camera))]
     public sealed class CameraProvider : MonoBehaviour, ICamera

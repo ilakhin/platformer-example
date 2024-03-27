@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Client.Core.Attachments
 {
+    // Прикрепление - монеты.
     [CreateAssetMenu]
     public sealed class CoinAttachment : Attachment, IAttachment
     {

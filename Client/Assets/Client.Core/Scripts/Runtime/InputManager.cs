@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Client.Core
 {
+    // Используется для менеджмента модификаций ввода.
     [UsedImplicitly]
     public sealed class InputManager : IInputManager
     {

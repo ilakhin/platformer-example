@@ -1,10 +1,9 @@
 namespace Client.Core.Modifiers
 {
+    // Используется для менеджмента модификаций (активация / деактивация).
     public interface IModifierManager
     {
         void AddModifier(IModifier modifier);
-
-        void Clear();
 
         void Update(float currentTime);
     }

@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Client.Foundation
 {
+    // Используется для трекинга целевой позиции.
     [DisallowMultipleComponent]
     public sealed class TransformFollower : MonoBehaviour
     {

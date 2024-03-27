@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Client.Core
 {
+    // Игрок.
     [DisallowMultipleComponent]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Collider2D))]

@@ -1,5 +1,6 @@
 namespace Client.Core.Attachments
 {
+    // Обработчик прикрепления. Используется для обработки при начислении.
     public interface IAttachmentHandler
     {
     }

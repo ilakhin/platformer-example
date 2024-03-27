@@ -1,5 +1,6 @@
 namespace Client.Core.Modifiers
 {
+    // Модификатор скорости.
     public sealed class VellocityModifier : IModifier
     {
         private readonly string _id;

@@ -4,6 +4,7 @@ using VContainer.Unity;
 
 namespace Client.Bootstrap
 {
+    // Корень связывания Main.
     [DisallowMultipleComponent]
     public sealed class MainLifetimeScope : LifetimeScope
     {

@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 
 namespace Client.Core.Attachments
 {
+    // Используется для менеджмента прикреплений.
     [UsedImplicitly]
     public sealed class AttachmentManager : IAttachmentManager
     {
