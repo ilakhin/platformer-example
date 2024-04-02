@@ -45,6 +45,3 @@
     - HudViewModel
 - Object Pool
     - RegionPool
-- Visitor
-    - IAttachment
-    - IAttachmentManager

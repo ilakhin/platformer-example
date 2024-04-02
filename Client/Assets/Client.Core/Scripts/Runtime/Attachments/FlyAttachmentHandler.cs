@@ -1,3 +1,4 @@
+using System;
 using Client.Core.Modifiers;
 using JetBrains.Annotations;
 
@@ -5,7 +6,7 @@ namespace Client.Core.Attachments
 {
     // Обработчик прикрепления - полет.
     [UsedImplicitly]
-    public sealed class FlyAttachmentHandler : IAttachmentHandler<FlyAttachment>
+    public sealed class FlyAttachmentHandler : IAttachmentHandler
     {
         private readonly IModifierManager _modifierManager;
         private readonly IPlayer _player;
@@ -16,11 +17,18 @@ namespace Client.Core.Attachments
             _player = player;
         }
 
-        void IAttachmentHandler<FlyAttachment>.Handle(FlyAttachment attachment)
+        private void Handle(FlyAttachment attachment)
         {
             var modifier = new FlyModifier(attachment.Id, attachment.Duration, _player);
 
             _modifierManager.AddModifier(modifier);
+        }
+
+        Type IAttachmentHandler.AttachmentType => typeof(FlyAttachment);
+
+        void IAttachmentHandler.Handle(IAttachment attachment)
+        {
+            Handle((FlyAttachment)attachment);
         }
     }
 }

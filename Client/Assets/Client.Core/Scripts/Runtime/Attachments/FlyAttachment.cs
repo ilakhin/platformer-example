@@ -15,10 +15,5 @@ namespace Client.Core.Attachments
         public string Id => _id;
 
         public float Duration => _duration;
-
-        void IAttachment.Handle(IAttachmentManager attachmentManager)
-        {
-            attachmentManager.Handle(this);
-        }
     }
 }

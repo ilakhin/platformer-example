@@ -10,10 +10,5 @@ namespace Client.Core.Attachments
         private int _coins;
 
         public int Coins => _coins;
-
-        void IAttachment.Handle(IAttachmentManager attachmentManager)
-        {
-            attachmentManager.Handle(this);
-        }
     }
 }

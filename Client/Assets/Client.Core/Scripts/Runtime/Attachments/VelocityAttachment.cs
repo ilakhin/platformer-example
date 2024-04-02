@@ -20,10 +20,5 @@ namespace Client.Core.Attachments
         public float Duration => _duration;
 
         public float Ratio => _ratio;
-
-        void IAttachment.Handle(IAttachmentManager attachmentManager)
-        {
-            attachmentManager.Handle(this);
-        }
     }
 }

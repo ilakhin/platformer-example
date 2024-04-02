@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
@@ -8,21 +9,20 @@ namespace Client.Core.Attachments
     [UsedImplicitly]
     public sealed class AttachmentManager : IAttachmentManager
     {
-        private readonly IAttachmentHandler[] _attachmentHandlers;
+        private readonly Dictionary<Type, IAttachmentHandler> _attachmentHandlers;
 
         public AttachmentManager(IEnumerable<IAttachmentHandler> attachmentHandlers)
         {
-            _attachmentHandlers = attachmentHandlers.ToArray();
+            _attachmentHandlers = attachmentHandlers.ToDictionary(static handler => handler.AttachmentType);
         }
 
-        void IAttachmentManager.Handle<T>(T attachment)
+        void IAttachmentManager.Handle(IAttachment attachment)
         {
-            foreach (var baseAttachmentHandler in _attachmentHandlers)
+            var attachmentType = attachment.GetType();
+
+            if (_attachmentHandlers.TryGetValue(attachmentType, out var attachmentHandler))
             {
-                if (baseAttachmentHandler is IAttachmentHandler<T> derivedAttachmentHandler)
-                {
-                    derivedAttachmentHandler.Handle(attachment);
-                }
+                attachmentHandler.Handle(attachment);
             }
         }
     }

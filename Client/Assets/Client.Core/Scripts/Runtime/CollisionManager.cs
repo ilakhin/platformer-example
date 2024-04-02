@@ -45,7 +45,7 @@ namespace Client.Core
 
                     foreach (var attachment in item.Attachments)
                     {
-                        attachment.Handle(_attachmentManager);
+                        _attachmentManager.Handle(attachment);
                     }
 
                     break;
